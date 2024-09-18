@@ -1,4 +1,3 @@
-using Tarodev;
 using UnityEngine;
 
 public class Shot : MonoBehaviour
@@ -19,7 +18,7 @@ public class Shot : MonoBehaviour
     void Start()
     {
         var muzzleEffect = Instantiate(muzzlePrefab, transform.position, transform.rotation);
-        Destroy(muzzleEffect, 5f);
+        Destroy(muzzleEffect, 1f);
         velocity = transform.forward * speed;
         transform.Rotate(90.0f, 0.0f, 0.0f);
     }
@@ -38,7 +37,7 @@ public class Shot : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         var hitEffect = Instantiate(hitPrefab, collision.GetContact(0).point, Quaternion.identity);
-        if (collision.transform.TryGetComponent<IExplode>(out var ex)) ex.Explode();
+        //if (collision.transform.TryGetComponent<IExplode>(out var ex)) ex.Explode();
         Destroy(hitEffect, 5f);
         Destroy(gameObject);
     }
