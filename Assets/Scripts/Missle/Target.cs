@@ -7,7 +7,7 @@ public class Target : MonoBehaviour, IExplode
     [SerializeField] private float _speed = 10;
     public Rigidbody Rb => _rb;
 
-    void Update()
+    private void FixedUpdate()
     {
         var dir = new Vector3(Mathf.Cos(Time.time * _speed) * _size, Mathf.Sin(Time.time * _speed) * _size);
 

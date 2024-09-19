@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 public class PauseMenuUILogic : MonoBehaviour
 {
     private const string BackButtonName = "BackButton";
-    private const string ConfirmButtonName = "StartMenuButton";
+    private const string StartMenuButtonName = "StartMenuButton";
 
     public event EventHandler LeavePauseMenu;
 
@@ -27,10 +27,10 @@ public class PauseMenuUILogic : MonoBehaviour
         }
 
 
-        _pauseMenuDocument.rootVisualElement.Q<Button>(ConfirmButtonName).clicked += () =>
+        _pauseMenuDocument.rootVisualElement.Q<Button>(StartMenuButtonName).clicked += () =>
         {
             Debug.Log("Start Menu button clicked!");
-            OnLeavePauseButtonPressed();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         };
 
         _pauseMenuDocument.rootVisualElement.Q<Button>(BackButtonName).clicked += () =>

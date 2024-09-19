@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
 
     int gunPointIndex;
 
-    void Update()
+    void FixedUpdate()
     {
         if (firing)
         {

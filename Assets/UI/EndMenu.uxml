@@ -1,9 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<engine:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:engine="UnityEngine.UIElements"
-    xmlns:editor="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
->
-    
-</engine:UXML>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; height: -35px;" />
+    <ui:VisualElement style="flex-grow: 1; justify-content: center;">
+        <ui:Label tabindex="-1" text="EndScreen" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EndTitle" style="align-self: center; align-items: stretch; justify-content: center; font-size: 50px;" />
+    </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1;" />
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row; flex-wrap: nowrap;">
+        <ui:VisualElement style="flex-grow: 1;" />
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:Button text="Next" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NextButton" />
+            <ui:Button text="Restart" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RestartButton" />
+            <ui:Button text="Start Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StartMenuButton" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

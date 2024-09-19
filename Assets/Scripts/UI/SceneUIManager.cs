@@ -18,6 +18,7 @@ public class SceneUIManager : MonoBehaviour
     private void Start()
     {
         _pauseMenuPanel.gameObject.SetActive(false);
+        _overlayPanel.PauseMenuButtonPressed += OnPauseMenuButtonPressed;
         _pauseMenuPanel.LeavePauseMenu += OnLeavePauseMenu;
     }
 

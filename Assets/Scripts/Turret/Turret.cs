@@ -61,7 +61,7 @@ public class Turret : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // do nothing when no target
         if (!_target) return;

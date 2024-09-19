@@ -6,26 +6,26 @@ public class HomeUIManager : MonoBehaviour
     [SerializeField] private StartMenuUILogic startMenuPanelPrefab;
     [SerializeField] private PauseMenuUILogic pauseMenuPanelPrefab;
     private StartMenuUILogic _startMenuPanel;
-    private PauseMenuUILogic _settingPanel;
+    private PauseMenuUILogic _pauseMenuPanel;
     private float _timescale;
 
     private void Awake()
     {
         _startMenuPanel = Instantiate(startMenuPanelPrefab, transform);
-        _settingPanel = Instantiate(pauseMenuPanelPrefab, transform);
+        _pauseMenuPanel = Instantiate(pauseMenuPanelPrefab, transform);
     }
 
     private void Start()
     {
-        _settingPanel.gameObject.SetActive(false);
-        _settingPanel.LeavePauseMenu += OnLeaveEditorMenu;
+        _pauseMenuPanel.gameObject.SetActive(false);
+        _pauseMenuPanel.LeavePauseMenu += OnLeavePauseMenu;
     }
 
 
-    private void OnLeaveEditorMenu(object sender, EventArgs e)
+    private void OnLeavePauseMenu(object sender, EventArgs e)
     {
         _startMenuPanel.gameObject.SetActive(true);
-        _settingPanel.gameObject.SetActive(false);
+        _pauseMenuPanel.gameObject.SetActive(false);
     }
 
     private void ScenePauseMenu(object sender, EventArgs e)
@@ -34,7 +34,7 @@ public class HomeUIManager : MonoBehaviour
         _timescale = Time.timeScale;
         Time.timeScale = 0;
         _startMenuPanel.gameObject.SetActive(true);
-        _settingPanel.gameObject.SetActive(false);
+        _pauseMenuPanel.gameObject.SetActive(false);
         //unpause
         Time.timeScale = _timescale;
     }
