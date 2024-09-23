@@ -306,16 +306,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc1c96910eb7294dac55550d8917eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 184470500350564771}
-  _target: {fileID: 0}
-  _explosionPrefab: {fileID: 0}
-  _speed: 15
-  _rotateSpeed: 120
-  _maxDistancePredict: 100
-  _minDistancePredict: 5
-  _maxTimePrediction: 5
-  _deviationAmount: 50
-  _deviationSpeed: 2
+  rb: {fileID: 184470500350564771}
+  target: {fileID: 0}
+  explosionPrefab: {fileID: 0}
+  speed: 15
+  rotateSpeed: 95
+  maxDistancePredict: 100
+  minDistancePredict: 5
+  maxTimePrediction: 5
+  deviationAmount: 50
+  deviationSpeed: 2
+  damage: 50
 --- !u!1 &7604778225646678301
 GameObject:
   m_ObjectHideFlags: 0

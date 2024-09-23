@@ -1,4 +1,4 @@
 public interface IExplode
 {
-    void Explode();
+    void Hit(int damage);
 }

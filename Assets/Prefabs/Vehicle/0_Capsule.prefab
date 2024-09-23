@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 7711717818840550672}
   - component: {fileID: -1197251511925020562}
   m_Layer: 0
-  m_Name: Capsule
-  m_TagString: Untagged
+  m_Name: 0_Capsule
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6853616961216630507}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5422787, y: 2.3903298, z: -0.07592275}
+  m_LocalPosition: {x: -0.65, y: 2.3903298, z: -0.07592275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -120,3 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14f27d8293946946bbf95bf1fb757c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _vehicleId: 0
+  _maxHealth: 50
+  _shield: 20
+  _steering: 20
+  _power: 200

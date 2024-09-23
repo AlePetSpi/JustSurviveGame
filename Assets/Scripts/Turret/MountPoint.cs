@@ -28,16 +28,16 @@ public class MountPoint : MonoBehaviour
         turret = transform.GetChild(0);
     }
 
-    public bool Aim(Vector3 targetPoint)
+    public bool Aim(Transform targetPoint)
     {
         return Aim(targetPoint, out _);
     }
 
-    public bool Aim(Vector3 targetPoint, out bool reachAngleLimit)
+    public bool Aim(Transform targetPoint, out bool reachAngleLimit)
     {
         reachAngleLimit = default;
         var hardpoint = transform;
-        var los = targetPoint - hardpoint.position;
+        var los = targetPoint.position - hardpoint.position;
         var halfAngle = angleLimit / 2;
         var losOnPlane = Vector3.ProjectOnPlane(los, hardpoint.up);
         var deltaAngle = Vector3.SignedAngle(hardpoint.forward, losOnPlane, hardpoint.up);

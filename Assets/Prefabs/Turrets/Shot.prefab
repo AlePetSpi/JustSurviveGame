@@ -125,6 +125,7 @@ MonoBehaviour:
   muzzlePrefab: {fileID: 4396058714394866264, guid: 3166a33f09bf1134385422eff58631cb, type: 3}
   speed: 100
   rangeOfBullet: 100
+  damage: 5
 --- !u!54 &5786733085122574382
 Rigidbody:
   m_ObjectHideFlags: 0

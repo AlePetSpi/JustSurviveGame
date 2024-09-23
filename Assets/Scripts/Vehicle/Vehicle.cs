@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Vehicle : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int _vehicleId;
+    [SerializeField] private int _maxHealth;
+    [SerializeField] private int _shield;
+    [SerializeField] private int _steering;
+    [SerializeField] private int _power;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int VehicleId { get => _vehicleId; set => _vehicleId = value; }
+    public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
+    public int Shield { get => _shield; set => _shield = value; }
+    public int Steering { get => _steering; set => _steering = value; }
+    public int Power { get => _power; set => _power = value; }
 }

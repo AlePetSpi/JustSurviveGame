@@ -47,7 +47,6 @@ public class Turret : MonoBehaviour
         {
             _target = collider.transform;
             _isActivated = true;
-            Debug.Log("Trigger enter and _isActivated: " + _isActivated);
         }
     }
 
@@ -57,7 +56,6 @@ public class Turret : MonoBehaviour
         {
             _target = null;
             _isActivated = false;
-            Debug.Log("Trigger exit and _isActivated: " + _isActivated);
         }
     }
 
@@ -70,9 +68,8 @@ public class Turret : MonoBehaviour
         var aimed = true;
         foreach (var mountPoint in mountPoints)
         {
-            if (!mountPoint.Aim(_target.position))
+            if (!mountPoint.Aim(_target))
             {
-                Debug.Log("Aim false");
                 aimed = false;
             }
         }
@@ -80,7 +77,6 @@ public class Turret : MonoBehaviour
         // shoot when aimed
         if (aimed && _isActivated)
         {
-            Debug.Log("Gun is fired");
             gun.Fire();
         }
     }

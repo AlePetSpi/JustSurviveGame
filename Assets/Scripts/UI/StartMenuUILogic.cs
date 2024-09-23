@@ -15,9 +15,9 @@ public class StartMenuUILogic : MonoBehaviour
     private void OnEnable()
     {
         _startMenuUIDocument = GetComponent<UIDocument>();
-        if (_startMenuUIDocument == null)
+        if (_startMenuUIDocument == null || vehiclePrefab == null)
         {
-            Debug.LogError("Start Menu UI Document is not found");
+            Debug.LogError("UI Document is not found");
             enabled = false;
             return;
         }
@@ -36,18 +36,24 @@ public class StartMenuUILogic : MonoBehaviour
 #endif
         };
 
-        Instantiate(vehiclePrefab[_tempVehicleIndex].gameObject);
+        currentVehicleInstance = Instantiate(vehiclePrefab[_tempVehicleIndex].gameObject);
     }
 
     private void FixedUpdate()
     {
+        if (vehiclePrefab == null) return;
         int vehicleNr = _startMenuUIDocument.rootVisualElement.Q<DropdownField>(VehicleSelectorName).index;
         if (vehicleNr != _tempVehicleIndex)
         {
             Debug.Log($"vehicleNr: {vehicleNr}");
-            Destroy(currentVehicleInstance);
-            Instantiate(vehiclePrefab[vehicleNr].gameObject);
-            currentVehicleInstance = vehiclePrefab[vehicleNr].gameObject;
+            Debug.Log($"currentVehicleInstance: {currentVehicleInstance}");
+
+            if (currentVehicleInstance != null)
+            {
+                Destroy(currentVehicleInstance);
+            }
+            currentVehicleInstance = Instantiate(vehiclePrefab[vehicleNr].gameObject);
+            PersistentDataManager.VehicleId = vehicleNr;
             _tempVehicleIndex = vehicleNr;
         }
     }
