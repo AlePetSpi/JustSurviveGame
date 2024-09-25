@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -6,12 +7,12 @@ public class Missile : MonoBehaviour
     [Header("REFERENCES")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject explosionPrefab;
-    [SerializeField] private GameObject startMisslePrefab;
+    [SerializeField] private GameObject startMissilePrefab;
+    [SerializeField] private int secondsToDestroy = 9;
 
     [Header("MOVEMENT")]
     [SerializeField] private float speed = 15;
     [SerializeField] private float rotateSpeed = 95;
-    [SerializeField] private float rangeOfMissle = 100;
 
     [Header("PREDICTION")]
     [SerializeField] private float maxDistancePredict = 100;
@@ -24,16 +25,25 @@ public class Missile : MonoBehaviour
     [SerializeField] private float deviationSpeed = 2;
     [SerializeField] private int damage = 50;
 
-    private Player _player;
+    private Vehicle _vehicle;
 
-    public Player Player { get => _player; set => _player = value; }
+    public Vehicle Vehicle { get => _vehicle; set => _vehicle = value; }
+
+    private void Awake()
+    {
+        if (startMissilePrefab)
+        {
+            GameObject effect = Instantiate(startMissilePrefab, transform.position, Quaternion.identity);
+            Destroy(effect, 1f);
+        }
+    }
 
     private void FixedUpdate()
     {
-        if (_player == null) return;
+        if (_vehicle == null) return;
         rb.velocity = transform.forward * speed;
 
-        var leadTimePercentage = Mathf.InverseLerp(minDistancePredict, maxDistancePredict, Vector3.Distance(transform.position, _player.transform.position));
+        var leadTimePercentage = Mathf.InverseLerp(minDistancePredict, maxDistancePredict, Vector3.Distance(transform.position, _vehicle.transform.position));
 
         PredictMovement(leadTimePercentage);
 
@@ -41,17 +51,23 @@ public class Missile : MonoBehaviour
 
         RotateRocket();
 
-        if (Vector3.Distance(rb.velocity, rb.position) > rangeOfMissle)
-        {
-            Destroy(gameObject);
-        }
+        StartCoroutine(DestroyMissle());
+    }
+
+
+    private IEnumerator DestroyMissle()
+    {
+
+        yield return new WaitForSeconds(secondsToDestroy);
+        Destroy(gameObject);
+        Debug.Log($"Missile destroyed");
     }
 
     private void PredictMovement(float leadTimePercentage)
     {
         var predictionTime = Mathf.Lerp(0, maxTimePrediction, leadTimePercentage);
 
-        standardPrediction = _player.Rb.position + _player.Rb.velocity * predictionTime;
+        standardPrediction = _vehicle.Rb.position + _vehicle.Rb.velocity * predictionTime;
     }
 
     private void AddDeviation(float leadTimePercentage)
@@ -73,10 +89,22 @@ public class Missile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (explosionPrefab) Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        if (collision.transform.TryGetComponent<IExplode>(out var ex)) ex.Hit(damage);
+        GameObject explosion = null;
+        if (explosionPrefab)
+        {
+            explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        }
+        if (collision.transform.TryGetComponent<Vehicle>(out var vehicle))
+        {
+            var player = vehicle.GetComponentInParent<Player>();
 
+            if (player != null)
+            {
+                player.Hit(damage);
+            }
+        }
         Destroy(gameObject);
+        Destroy(explosion);
     }
 
     private void OnDrawGizmos()

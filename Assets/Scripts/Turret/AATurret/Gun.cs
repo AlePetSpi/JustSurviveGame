@@ -6,12 +6,12 @@ public class Gun : MonoBehaviour
     public Transform[] gunPoints;
     public float fireRate;
 
-    bool firing;
-    float fireTimer;
+    private bool firing;
+    private float fireTimer;
 
-    int gunPointIndex;
+    private int gunPointIndex;
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (firing)
         {
@@ -37,7 +37,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    void SpawnShot()
+    private void SpawnShot()
     {
         var gunPoint = gunPoints[gunPointIndex++];
         Instantiate(shotPrefab, gunPoint.position, gunPoint.rotation);

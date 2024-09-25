@@ -3,9 +3,11 @@ using UnityEngine;
 
 public static class PersistentDataManager
 {
+    private const string VehicleIdKey = "VehicleId";
     private const string HealthKey = "Health";
     private const string ShieldKey = "Shield";
-    private const string VehicleIdKey = "VehicleId";
+    private const string PowerKey = "Power";
+    private const string SteeringKey = "Steering";
     private const string EndTitleLable = "EndTitle";
 
     public static event EventHandler DataChangedEvent;
@@ -14,13 +16,24 @@ public static class PersistentDataManager
         DataChangedEvent?.Invoke(null, EventArgs.Empty);
     }
 
+    public static int VehicleId
+    {
+        get => PlayerPrefs.GetInt(VehicleIdKey, 0);
+        set
+        {
+            Debug.Log($"Current VehicleId: {value}");
+            PlayerPrefs.SetFloat(VehicleIdKey, value);
+            //OnDataChanged();
+        }
+    }
+
     public static int Health
     {
         get => PlayerPrefs.GetInt(HealthKey, 100);
         set
         {
             PlayerPrefs.SetFloat(HealthKey, value);
-            OnDataChanged();
+            //OnDataChanged();
         }
     }
 
@@ -30,20 +43,27 @@ public static class PersistentDataManager
         set
         {
             PlayerPrefs.SetFloat(ShieldKey, value);
-            OnDataChanged();
+            //OnDataChanged();
         }
-
     }
-
-    public static int VehicleId
+    public static int Power
     {
-        get => PlayerPrefs.GetInt(VehicleIdKey, 20);
+        get => PlayerPrefs.GetInt(PowerKey, 150);
         set
         {
-            PlayerPrefs.SetFloat(VehicleIdKey, value);
-            OnDataChanged();
+            PlayerPrefs.SetFloat(PowerKey, value);
+            //OnDataChanged();
         }
+    }
 
+    public static int Steering
+    {
+        get => PlayerPrefs.GetInt(SteeringKey, 20);
+        set
+        {
+            PlayerPrefs.SetFloat(SteeringKey, value);
+            //OnDataChanged();
+        }
     }
 
     public static string EndTitleText
@@ -52,7 +72,7 @@ public static class PersistentDataManager
         set
         {
             PlayerPrefs.SetString(EndTitleLable, value);
-            OnDataChanged();
+            //OnDataChanged();
         }
 
     }

@@ -4,17 +4,12 @@ public class Shot : MonoBehaviour
 {
     [SerializeField] private GameObject hitPrefab;
     [SerializeField] private GameObject muzzlePrefab;
+    [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private float speed;
     [SerializeField] private float rangeOfBullet = 100;
     [SerializeField] private int damage = 5;
 
-    Rigidbody rb;
-    Vector3 velocity;
-
-    void Awake()
-    {
-        TryGetComponent(out rb);
-    }
+    private Vector3 velocity;
 
     void Start()
     {
@@ -27,8 +22,8 @@ public class Shot : MonoBehaviour
     void FixedUpdate()
     {
         var displacement = velocity * Time.deltaTime;
-        rb.MovePosition(rb.position + displacement);
-        if (Vector3.Distance(velocity, rb.position) > rangeOfBullet)
+        rigidbody.MovePosition(rigidbody.position + displacement);
+        if (Vector3.Distance(velocity, rigidbody.position) > rangeOfBullet)
         {
             Destroy(gameObject);
         }
@@ -36,9 +31,16 @@ public class Shot : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        var hitEffect = Instantiate(hitPrefab, collision.GetContact(0).point, Quaternion.identity);
-        if (collision.transform.TryGetComponent<IExplode>(out var ex)) ex.Hit(damage);
+        GameObject hitEffect = Instantiate(hitPrefab, collision.GetContact(0).point, Quaternion.identity);
+        if (collision.transform.TryGetComponent<Vehicle>(out var vehicle))
+        {
+            var player = vehicle.GetComponentInParent<Player>();
+
+            if (player != null)
+            {
+                player.Hit(damage);
+            }
+        }
         Destroy(hitEffect, 2f);
-        Destroy(gameObject);
     }
 }

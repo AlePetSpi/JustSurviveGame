@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class MisselTurret : MonoBehaviour
 {
-    [SerializeField] private Missile[] missiles;
     [SerializeField] private MountPoint[] mountPoints;
+    [SerializeField] private Transform[] missilePoints;
+    [SerializeField] private GameObject missilePrefab;
     [SerializeField] private int seconds;
+    [SerializeField] private bool drawGizmos = false;
 
     private bool _isActivated = false;
-    //private Transform _playerTransform;
-    private Player _player;
-    private int _startMissleNr = 0;
-
-    private System.Diagnostics.Stopwatch _stopWatch = new System.Diagnostics.Stopwatch();
+    private Vehicle _vehicle;
+    private int _startMissileNr = 0;
+    private Coroutine _missileRoutine;
 
     private void OnDrawGizmos()
     {
 #if UNITY_EDITOR
-        if (!_player) return;
+        if (!drawGizmos || !_vehicle) return;
 
         var dashLineSize = 2f;
 
@@ -26,20 +26,16 @@ public class MisselTurret : MonoBehaviour
         {
             var hardpoint = mountPoint.transform;
             var from = Quaternion.AngleAxis(-mountPoint.angleLimit / 2, hardpoint.up) * hardpoint.forward;
-            var projection = Vector3.ProjectOnPlane(_player.transform.position - hardpoint.position, hardpoint.up);
+            var projection = Vector3.ProjectOnPlane(_vehicle.transform.position - hardpoint.position, hardpoint.up);
 
-            // projection line
             Handles.color = Color.white;
-            Handles.DrawDottedLine(_player.transform.position, hardpoint.position + projection, dashLineSize);
+            Handles.DrawDottedLine(_vehicle.transform.position, hardpoint.position + projection, dashLineSize);
 
-            // do not draw target indicator when out of angle
             if (Vector3.Angle(hardpoint.forward, projection) > mountPoint.angleLimit / 2) return;
 
-            // target line
             Handles.color = Color.red;
             Handles.DrawLine(hardpoint.position, hardpoint.position + projection);
 
-            // range line
             Handles.color = Color.green;
             Handles.DrawWireArc(hardpoint.position, hardpoint.up, from, mountPoint.angleLimit, projection.magnitude);
             Handles.DrawSolidDisc(hardpoint.position + projection, hardpoint.up, .5f);
@@ -51,8 +47,7 @@ public class MisselTurret : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            //_playerTransform = collider.transform;
-            _player = collider.GetComponent<Player>();
+            _vehicle = collider.GetComponent<Vehicle>();
             _isActivated = true;
         }
     }
@@ -61,38 +56,63 @@ public class MisselTurret : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            //_playerTransform = null;
-            _player = null;
+            _vehicle = null;
             _isActivated = false;
+
+            if (_missileRoutine != null)
+            {
+                StopCoroutine(_missileRoutine);
+                _missileRoutine = null;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        // do nothing when no target
-        if (!_player) return;
+        if (!_vehicle || missilePoints.Length == 0)
+        {
+            //Debug.Log("Missile Turret not update " + missilePoints.Length);
+            return;
+        }
 
-        // aim target
         var aimed = true;
         foreach (var mountPoint in mountPoints)
         {
-            if (!mountPoint.Aim(_player.transform))
+            if (!mountPoint.Aim(_vehicle.transform))
             {
                 aimed = false;
             }
         }
 
-        // shoot when aimed
-        if (aimed && _isActivated)
+        //Debug.Log($"aimed {aimed} / _isActivated {_isActivated} / _startMissileNr {_startMissileNr} < missilePoints.Length {missilePoints.Length} / _missileRoutine {_missileRoutine}");
+        if (aimed && _isActivated && _startMissileNr < missilePoints.Length && _missileRoutine == null)
         {
-            StartCoroutine(StartMissle());
+            _missileRoutine = StartCoroutine(StartMissileRoutine());
         }
     }
 
-    IEnumerator StartMissle()
+    private IEnumerator StartMissileRoutine()
     {
-        yield return new WaitForSeconds(seconds);
-        missiles[_startMissleNr].Player = _player;
-        _startMissleNr++;
+        while (_isActivated && _startMissileNr < missilePoints.Length)
+        {
+            FireMissile();
+            yield return new WaitForSeconds(seconds);
+            if (!_isActivated)
+                yield break;
+        }
+        _missileRoutine = null;
+    }
+
+    private void FireMissile()
+    {
+        if (_startMissileNr >= missilePoints.Length) return;
+
+        Transform missilePoint = missilePoints[_startMissileNr];
+        var missile = Instantiate(missilePrefab, missilePoint.position, missilePoint.rotation);
+        missile.GetComponent<Missile>().Vehicle = _vehicle;
+        Debug.Log($"Missile {_startMissileNr} abgefeuert!");
+        _startMissileNr++;
+        missilePoint.gameObject.SetActive(false);
+
     }
 }

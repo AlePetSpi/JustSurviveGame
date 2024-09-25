@@ -23,8 +23,8 @@ public class StartMenuUILogic : MonoBehaviour
         }
         _startMenuUIDocument.rootVisualElement.Q<Button>(StartButtonName).clicked += () =>
         {
-            Debug.Log("Start Button Pressed");
             int sceneNr = _startMenuUIDocument.rootVisualElement.Q<DropdownField>(LevelSelectorName).index + 1;
+            PlayerPrefs.Save();
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneNr);
         };
         _startMenuUIDocument.rootVisualElement.Q<Button>(QuitButtonName).clicked += () =>
@@ -36,7 +36,7 @@ public class StartMenuUILogic : MonoBehaviour
 #endif
         };
 
-        currentVehicleInstance = Instantiate(vehiclePrefab[_tempVehicleIndex].gameObject);
+        InstantiateVehicle(_tempVehicleIndex);
     }
 
     private void FixedUpdate()
@@ -45,17 +45,26 @@ public class StartMenuUILogic : MonoBehaviour
         int vehicleNr = _startMenuUIDocument.rootVisualElement.Q<DropdownField>(VehicleSelectorName).index;
         if (vehicleNr != _tempVehicleIndex)
         {
-            Debug.Log($"vehicleNr: {vehicleNr}");
-            Debug.Log($"currentVehicleInstance: {currentVehicleInstance}");
-
             if (currentVehicleInstance != null)
             {
                 Destroy(currentVehicleInstance);
             }
-            currentVehicleInstance = Instantiate(vehiclePrefab[vehicleNr].gameObject);
-            PersistentDataManager.VehicleId = vehicleNr;
+            InstantiateVehicle(vehicleNr);
             _tempVehicleIndex = vehicleNr;
         }
+    }
+
+    private void InstantiateVehicle(int index)
+    {
+        currentVehicleInstance = Instantiate(vehiclePrefab[index].gameObject);
+        currentVehicleInstance.GetComponent<Rigidbody>().useGravity = false;
+        Vehicle vehicle = currentVehicleInstance.GetComponent<Vehicle>();
+        PersistentDataManager.VehicleId = vehicle.VehicleId;
+        PersistentDataManager.Health = vehicle.MaxHealth;
+        PersistentDataManager.Shield = vehicle.Shield;
+        PersistentDataManager.Power = vehicle.Power;
+        PersistentDataManager.Steering = vehicle.Steering;
+        PlayerPrefs.Save();
     }
 
 }

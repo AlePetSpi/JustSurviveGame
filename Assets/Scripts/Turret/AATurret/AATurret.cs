@@ -5,14 +5,15 @@ public class AATurret : MonoBehaviour
 {
     [SerializeField] private Gun gun;
     [SerializeField] private MountPoint[] mountPoints;
+    [SerializeField] private bool drawGizmos = false;
 
     private bool _isActivated = false;
-    private Transform _target;
+    private Transform _player;
 
     private void OnDrawGizmos()
     {
 #if UNITY_EDITOR
-        if (!_target) return;
+        if (!drawGizmos || !_player) return;
 
         var dashLineSize = 2f;
 
@@ -20,11 +21,11 @@ public class AATurret : MonoBehaviour
         {
             var hardpoint = mountPoint.transform;
             var from = Quaternion.AngleAxis(-mountPoint.angleLimit / 2, hardpoint.up) * hardpoint.forward;
-            var projection = Vector3.ProjectOnPlane(_target.position - hardpoint.position, hardpoint.up);
+            var projection = Vector3.ProjectOnPlane(_player.position - hardpoint.position, hardpoint.up);
 
             // projection line
             Handles.color = Color.white;
-            Handles.DrawDottedLine(_target.position, hardpoint.position + projection, dashLineSize);
+            Handles.DrawDottedLine(_player.position, hardpoint.position + projection, dashLineSize);
 
             // do not draw target indicator when out of angle
             if (Vector3.Angle(hardpoint.forward, projection) > mountPoint.angleLimit / 2) return;
@@ -43,18 +44,18 @@ public class AATurret : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.CompareTag("Target"))
+        if (collider.gameObject.CompareTag("Player"))
         {
-            _target = collider.transform;
+            _player = collider.transform;
             _isActivated = true;
         }
     }
 
     private void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject.CompareTag("Target"))
+        if (collider.gameObject.CompareTag("Player"))
         {
-            _target = null;
+            _player = null;
             _isActivated = false;
         }
     }
@@ -62,13 +63,13 @@ public class AATurret : MonoBehaviour
     private void FixedUpdate()
     {
         // do nothing when no target
-        if (!_target) return;
+        if (!_player) return;
 
         // aim target
         var aimed = true;
         foreach (var mountPoint in mountPoints)
         {
-            if (!mountPoint.Aim(_target))
+            if (!mountPoint.Aim(_player))
             {
                 aimed = false;
             }
