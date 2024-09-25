@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PauseMenuUILogic : MonoBehaviour
@@ -26,11 +27,11 @@ public class PauseMenuUILogic : MonoBehaviour
             return;
         }
 
-
         _pauseMenuDocument.rootVisualElement.Q<Button>(StartMenuButtonName).clicked += () =>
         {
             Debug.Log("Start Menu button clicked!");
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+            SceneManager.UnloadSceneAsync(1);
         };
 
         _pauseMenuDocument.rootVisualElement.Q<Button>(BackButtonName).clicked += () =>

@@ -69,9 +69,11 @@ public class MisselTurret : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        //Debug.Log($"Health {PersistentDataManager.Health}");
         if (!_vehicle || missilePoints.Length == 0)
         {
-            //Debug.Log("Missile Turret not update " + missilePoints.Length);
+            //Debug.Log($"No Update for Missile Turret");
             return;
         }
 
@@ -87,6 +89,7 @@ public class MisselTurret : MonoBehaviour
         //Debug.Log($"aimed {aimed} / _isActivated {_isActivated} / _startMissileNr {_startMissileNr} < missilePoints.Length {missilePoints.Length} / _missileRoutine {_missileRoutine}");
         if (aimed && _isActivated && _startMissileNr < missilePoints.Length && _missileRoutine == null)
         {
+            Debug.Log($"Health {PersistentDataManager.Health}");
             _missileRoutine = StartCoroutine(StartMissileRoutine());
         }
     }
@@ -97,8 +100,12 @@ public class MisselTurret : MonoBehaviour
         {
             FireMissile();
             yield return new WaitForSeconds(seconds);
-            if (!_isActivated)
+            if (!_isActivated || PersistentDataManager.Health <= 0)
+            {
+                Debug.Log($"Wait Seconds break");
                 yield break;
+            }
+
         }
         _missileRoutine = null;
     }

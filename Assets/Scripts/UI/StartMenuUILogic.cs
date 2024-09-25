@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class StartMenuUILogic : MonoBehaviour
@@ -24,7 +25,8 @@ public class StartMenuUILogic : MonoBehaviour
         _startMenuUIDocument.rootVisualElement.Q<Button>(StartButtonName).clicked += () =>
         {
             int sceneNr = _startMenuUIDocument.rootVisualElement.Q<DropdownField>(LevelSelectorName).index + 1;
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneNr);
+            SceneManager.LoadScene(sceneNr, LoadSceneMode.Single);
+            SceneManager.UnloadSceneAsync(0);
         };
         _startMenuUIDocument.rootVisualElement.Q<Button>(QuitButtonName).clicked += () =>
         {
@@ -38,7 +40,7 @@ public class StartMenuUILogic : MonoBehaviour
         InstantiateVehicle(_tempVehicleIndex);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (vehiclePrefab == null) return;
         int vehicleNr = _startMenuUIDocument.rootVisualElement.Q<DropdownField>(VehicleSelectorName).index;
@@ -55,6 +57,7 @@ public class StartMenuUILogic : MonoBehaviour
 
     private void InstantiateVehicle(int index)
     {
+        Debug.Log($"Vehicle NUmber {index}");
         currentVehicleInstance = Instantiate(vehiclePrefab[index].gameObject);
         Vehicle vehicle = currentVehicleInstance.GetComponent<Vehicle>();
         PersistentDataManager.VehicleId = vehicle.VehicleId;

@@ -12,8 +12,6 @@ public class EndMenuUILogic : MonoBehaviour
 
     private UIDocument _endMenuUIDocument;
 
-
-    // Start is called before the first frame update
     void OnEnable()
     {
         _endMenuUIDocument = GetComponent<UIDocument>();
@@ -28,7 +26,7 @@ public class EndMenuUILogic : MonoBehaviour
         _endMenuUIDocument.rootVisualElement.Q<Button>(RestartButton).clicked += () =>
         {
             Debug.Log("RestartButton Button Pressed");
-            UnityEngine.SceneManagement.SceneManager.LoadScene(currentSceneIndex);
+            SceneManager.LoadScene(currentSceneIndex, LoadSceneMode.Single);
         };
         _endMenuUIDocument.rootVisualElement.Q<Button>(NextButtonName).clicked += () =>
         {
@@ -38,14 +36,9 @@ public class EndMenuUILogic : MonoBehaviour
         _endMenuUIDocument.rootVisualElement.Q<Button>(StartMenuButtonName).clicked += () =>
         {
             Debug.Log("Start Button Pressed");
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+            SceneManager.UnloadSceneAsync(currentSceneIndex);
         };
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 }

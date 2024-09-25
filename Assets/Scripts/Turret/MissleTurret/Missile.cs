@@ -54,7 +54,6 @@ public class Missile : MonoBehaviour
         StartCoroutine(DestroyMissle());
     }
 
-
     private IEnumerator DestroyMissle()
     {
 
@@ -96,7 +95,7 @@ public class Missile : MonoBehaviour
         }
         if (collision.transform.TryGetComponent<Vehicle>(out var vehicle))
         {
-            var player = vehicle.GetComponentInParent<Player>();
+            Player player = vehicle.GetComponentInParent<Player>();
 
             if (player != null)
             {

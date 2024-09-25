@@ -4,7 +4,7 @@ public class Shot : MonoBehaviour
 {
     [SerializeField] private GameObject hitPrefab;
     [SerializeField] private GameObject muzzlePrefab;
-    [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
     [SerializeField] private float rangeOfBullet = 100;
     [SerializeField] private int damage = 5;
@@ -22,8 +22,8 @@ public class Shot : MonoBehaviour
     void FixedUpdate()
     {
         var displacement = velocity * Time.deltaTime;
-        rigidbody.MovePosition(rigidbody.position + displacement);
-        if (Vector3.Distance(velocity, rigidbody.position) > rangeOfBullet)
+        rb.MovePosition(rb.position + displacement);
+        if (Vector3.Distance(velocity, rb.position) > rangeOfBullet)
         {
             Destroy(gameObject);
         }
