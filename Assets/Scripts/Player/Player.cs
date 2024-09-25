@@ -31,8 +31,9 @@ public class Player : MonoBehaviour
     {
         GameObject gameObjectChild = Instantiate(vehicles[PersistentDataManager.VehicleId].gameObject, gameObject.transform);
         _rigidbody = gameObjectChild.GetComponent<Rigidbody>();
-        _maxHealth = (int)PersistentDataManager.Health;
-        _maxShield = (int)PersistentDataManager.Shield;
+        _rigidbody.useGravity = true;
+        _maxHealth = PersistentDataManager.Health;
+        _maxShield = PersistentDataManager.Shield;
         Debug.Log($"Vehicle NUmber {PersistentDataManager.VehicleId} / _maxHealth {_maxHealth} / ");
 
     }

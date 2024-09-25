@@ -21,9 +21,8 @@ public static class PersistentDataManager
         get => PlayerPrefs.GetInt(VehicleIdKey, 0);
         set
         {
-            Debug.Log($"Current VehicleId: {value}");
-            PlayerPrefs.SetFloat(VehicleIdKey, value);
-            //OnDataChanged();
+            PlayerPrefs.SetInt(VehicleIdKey, value);
+            OnDataChanged();
         }
     }
 
@@ -32,8 +31,8 @@ public static class PersistentDataManager
         get => PlayerPrefs.GetInt(HealthKey, 100);
         set
         {
-            PlayerPrefs.SetFloat(HealthKey, value);
-            //OnDataChanged();
+            PlayerPrefs.SetInt(HealthKey, value);
+            OnDataChanged();
         }
     }
 
@@ -42,8 +41,8 @@ public static class PersistentDataManager
         get => PlayerPrefs.GetInt(ShieldKey, 20);
         set
         {
-            PlayerPrefs.SetFloat(ShieldKey, value);
-            //OnDataChanged();
+            PlayerPrefs.SetInt(ShieldKey, value);
+            OnDataChanged();
         }
     }
     public static int Power
@@ -51,8 +50,8 @@ public static class PersistentDataManager
         get => PlayerPrefs.GetInt(PowerKey, 150);
         set
         {
-            PlayerPrefs.SetFloat(PowerKey, value);
-            //OnDataChanged();
+            PlayerPrefs.SetInt(PowerKey, value);
+            OnDataChanged();
         }
     }
 
@@ -61,8 +60,8 @@ public static class PersistentDataManager
         get => PlayerPrefs.GetInt(SteeringKey, 20);
         set
         {
-            PlayerPrefs.SetFloat(SteeringKey, value);
-            //OnDataChanged();
+            PlayerPrefs.SetInt(SteeringKey, value);
+            OnDataChanged();
         }
     }
 
@@ -72,7 +71,7 @@ public static class PersistentDataManager
         set
         {
             PlayerPrefs.SetString(EndTitleLable, value);
-            //OnDataChanged();
+            OnDataChanged();
         }
 
     }

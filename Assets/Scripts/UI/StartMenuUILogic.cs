@@ -24,7 +24,6 @@ public class StartMenuUILogic : MonoBehaviour
         _startMenuUIDocument.rootVisualElement.Q<Button>(StartButtonName).clicked += () =>
         {
             int sceneNr = _startMenuUIDocument.rootVisualElement.Q<DropdownField>(LevelSelectorName).index + 1;
-            PlayerPrefs.Save();
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneNr);
         };
         _startMenuUIDocument.rootVisualElement.Q<Button>(QuitButtonName).clicked += () =>
@@ -57,7 +56,6 @@ public class StartMenuUILogic : MonoBehaviour
     private void InstantiateVehicle(int index)
     {
         currentVehicleInstance = Instantiate(vehiclePrefab[index].gameObject);
-        currentVehicleInstance.GetComponent<Rigidbody>().useGravity = false;
         Vehicle vehicle = currentVehicleInstance.GetComponent<Vehicle>();
         PersistentDataManager.VehicleId = vehicle.VehicleId;
         PersistentDataManager.Health = vehicle.MaxHealth;
