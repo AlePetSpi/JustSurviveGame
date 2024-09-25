@@ -31,7 +31,7 @@ public class PauseMenuUILogic : MonoBehaviour
         {
             Debug.Log("Start Menu button clicked!");
             SceneManager.LoadScene(0, LoadSceneMode.Single);
-            SceneManager.UnloadSceneAsync(1);
+            OnLeavePauseButtonPressed();
         };
 
         _pauseMenuDocument.rootVisualElement.Q<Button>(BackButtonName).clicked += () =>

@@ -37,7 +37,6 @@ public class EndMenuUILogic : MonoBehaviour
         {
             Debug.Log("Start Button Pressed");
             SceneManager.LoadScene(0, LoadSceneMode.Single);
-            SceneManager.UnloadSceneAsync(currentSceneIndex);
         };
 
     }

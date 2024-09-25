@@ -117,7 +117,7 @@ public class MisselTurret : MonoBehaviour
         Transform missilePoint = missilePoints[_startMissileNr];
         var missile = Instantiate(missilePrefab, missilePoint.position, missilePoint.rotation);
         missile.GetComponent<Missile>().Vehicle = _vehicle;
-        Debug.Log($"Missile {_startMissileNr} abgefeuert!");
+        Debug.Log($"Missile {_startMissileNr} launch!");
         _startMissileNr++;
         missilePoint.gameObject.SetActive(false);
 

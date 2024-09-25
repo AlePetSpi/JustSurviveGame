@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         if (vehicles == null) return;
-        Debug.Log("Player awake is called");
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
         //FindObjectOfType<GoalManager>().FinishedLap += OnFinishedLap;
@@ -27,7 +26,6 @@ public class Player : MonoBehaviour
         _rigidbody.useGravity = true;
         _maxHealth = vehicles[PersistentDataManager.VehicleId].MaxHealth;
         _maxShield = vehicles[PersistentDataManager.VehicleId].Shield;
-        Debug.Log($"Vehicle NUmber {PersistentDataManager.VehicleId} / _maxHealth {_maxHealth} / ");
     }
 
     private void UpdatePlayerProperties()
@@ -54,7 +52,6 @@ public class Player : MonoBehaviour
     public void Hit(int damage)
     {
         Debug.Log($"Player health is currently: {_maxHealth}");
-        Debug.Log($"Hit damage: {damage}");
         _maxHealth -= damage;
         PersistentDataManager.Health = _maxHealth;
         if (_maxHealth <= 0)

@@ -26,7 +26,6 @@ public class StartMenuUILogic : MonoBehaviour
         {
             int sceneNr = _startMenuUIDocument.rootVisualElement.Q<DropdownField>(LevelSelectorName).index + 1;
             SceneManager.LoadScene(sceneNr, LoadSceneMode.Single);
-            SceneManager.UnloadSceneAsync(0);
         };
         _startMenuUIDocument.rootVisualElement.Q<Button>(QuitButtonName).clicked += () =>
         {
