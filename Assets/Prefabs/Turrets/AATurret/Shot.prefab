@@ -106,7 +106,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 100
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5726975261715182278
@@ -125,8 +125,8 @@ MonoBehaviour:
   muzzlePrefab: {fileID: 4396058714394866264, guid: 3166a33f09bf1134385422eff58631cb, type: 3}
   rb: {fileID: 5786733085122574382}
   speed: 100
-  rangeOfBullet: 100
-  damage: 5
+  rangeOfBullet: 200
+  damage: 2
 --- !u!54 &5786733085122574382
 Rigidbody:
   m_ObjectHideFlags: 0

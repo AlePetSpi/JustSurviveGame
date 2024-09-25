@@ -368,6 +368,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AATurret
       objectReference: {fileID: 0}
+    - target: {fileID: 709382038319094274, guid: 0a1d5b9253c6bec488b74b0e101ea0cf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 951376142338181189, guid: 0a1d5b9253c6bec488b74b0e101ea0cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -469,6 +473,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a1d5b9253c6bec488b74b0e101ea0cf, type: 3}
+--- !u!1001 &1499920673
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5818177735203576163, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.47387725
+      objectReference: {fileID: 0}
+    - target: {fileID: 5818177735203576163, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.13123143
+      objectReference: {fileID: 0}
+    - target: {fileID: 5936848262174596167, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_Name
+      value: GatelingGun_Yellow_L3 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941636426175076771, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941636426175076771, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941636426175076771, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941636426175076771, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941636426175076771, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941636426175076771, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941636426175076771, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941636426175076771, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941636426175076771, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941636426175076771, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 784a6867e75dea947aadc80dd326a473, type: 3}
 --- !u!1 &2146946754
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissileTurret
       objectReference: {fileID: 0}
+    - target: {fileID: 272600756786510601, guid: 88b784a9ff107f74cb6cbdd6f6e5a045, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5173195497075057711, guid: 88b784a9ff107f74cb6cbdd6f6e5a045, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.58
@@ -694,3 +767,4 @@ SceneRoots:
   - {fileID: 1391375075}
   - {fileID: 7539246762482572264}
   - {fileID: 2146946757}
+  - {fileID: 1499920673}
