@@ -8,6 +8,7 @@ public class GatlingGun : MonoBehaviour
     [SerializeField] private Transform goBaseRotation;
     [SerializeField] private Transform goGunBody;
     [SerializeField] private Transform goBarrel;
+    [SerializeField] private float turnSpeed = 0.1f;
 
     // Distance the turret can aim and fire from
     [SerializeField] private float firingRange;
@@ -103,7 +104,7 @@ public class GatlingGun : MonoBehaviour
         else
         {
             // slow down barrel rotation and stop
-            _currentRotationSpeed = Mathf.Lerp(_currentRotationSpeed, 0, 10 * Time.deltaTime);
+            _currentRotationSpeed = Mathf.Lerp(_currentRotationSpeed, 0, turnSpeed * Time.deltaTime);
 
             // stop the particle system
             if (muzzelFlash.isPlaying)

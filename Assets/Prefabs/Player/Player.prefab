@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 7919444535535220543}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7806754673177268368
 Transform:
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.9889436, y: 0.85, z: -2.186494}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   _speed: 1
   sceneUIManager: {fileID: 0}
   vehicles:
-  - {fileID: -1197251511925020562, guid: 39fe580a1f73f4e46b82a5eaae4d2101, type: 3}
+  - {fileID: 3015144585158358524, guid: 3fba269b01dcfdf4a846db8afa303904, type: 3}
   - {fileID: 5866377690470209762, guid: fde91fe0aea4aff4096ea6f2a4b29727, type: 3}
   - {fileID: -6094683931336005937, guid: 2326b4dfdbad5314681cc643c1fdf5a9, type: 3}
   - {fileID: 274647674502212368, guid: 75394a4a4091a66419f011ddf6207c6e, type: 3}

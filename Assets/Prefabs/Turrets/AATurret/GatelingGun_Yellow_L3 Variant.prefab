@@ -144,6 +144,7 @@ MonoBehaviour:
   goBaseRotation: {fileID: 5938661650259717651}
   goGunBody: {fileID: 5941835989136325983}
   goBarrel: {fileID: 5941555428148598935}
+  turnSpeed: 1
   firingRange: 20
   muzzelFlash: {fileID: 5811203832004185577}
   barrelRotationSpeed: 1000

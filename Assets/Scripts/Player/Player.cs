@@ -38,12 +38,13 @@ public class Player : MonoBehaviour
 
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
-        _vehicleInstance = Instantiate(vehicles[PersistentDataManager.VehicleId].gameObject, gameObject.transform);
+        //_vehicleInstance = Instantiate(vehicles[PersistentDataManager.VehicleId].gameObject, gameObject.transform);
+        _vehicleInstance = Instantiate(vehicles[0].gameObject, gameObject.transform);
         _rb = _vehicleInstance.GetComponent<Rigidbody>();
         _rb.useGravity = true;
 
-        PersistentDataManager.MaxHealth = vehicles[PersistentDataManager.VehicleId].MaxHealth;
-        PersistentDataManager.MaxShield = vehicles[PersistentDataManager.VehicleId].Shield;
+        /*PersistentDataManager.MaxHealth = vehicles[PersistentDataManager.VehicleId].MaxHealth;
+        PersistentDataManager.MaxShield = vehicles[PersistentDataManager.VehicleId].Shield;*/
 
         _currentHealth = PersistentDataManager.MaxHealth;
         healthBar.SetMaxHealth(PersistentDataManager.MaxHealth);
@@ -51,13 +52,6 @@ public class Player : MonoBehaviour
         _currentShield = PersistentDataManager.MaxShield;
         ShieldBar.SetMaxShield(PersistentDataManager.MaxShield);
         ShieldBar.SetShield(_currentShield);
-    }
-
-    private void Update()
-    {
-        var dir = new Vector3(Mathf.Cos(Time.time * _speed) * _size, Mathf.Sin(Time.time * _speed) * _size);
-
-        //_rigidbody.velocity = dir;
     }
 
     private void OnPause()
