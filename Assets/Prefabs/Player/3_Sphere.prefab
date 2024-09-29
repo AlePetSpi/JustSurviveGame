@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _vehicleId: 3
   _maxHealth: 30
-  _shield: 10
+  _shield: 30
   _steering: 30
   _power: 300
   _rigidbody: {fileID: 4494678172249862396}

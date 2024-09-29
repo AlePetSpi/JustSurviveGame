@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class Missile : MonoBehaviour
+public class Missile : MonoBehaviour, Projectiles
 {
     [Header("REFERENCES")]
     [SerializeField] private Rigidbody rb;

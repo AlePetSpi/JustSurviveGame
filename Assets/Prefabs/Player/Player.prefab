@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7806754673177268368}
   - component: {fileID: 7257301576471214691}
+  - component: {fileID: 7919444535535220543}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -27,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.9889436, y: 0.85, z: -2.186494}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27393ecb4651b54ca9e06f38c44ad18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _size: 20
+  _size: 10
   _speed: 1
   sceneUIManager: {fileID: 0}
   vehicles:
@@ -52,3 +53,36 @@ MonoBehaviour:
   - {fileID: 5866377690470209762, guid: fde91fe0aea4aff4096ea6f2a4b29727, type: 3}
   - {fileID: -6094683931336005937, guid: 2326b4dfdbad5314681cc643c1fdf5a9, type: 3}
   - {fileID: 274647674502212368, guid: 75394a4a4091a66419f011ddf6207c6e, type: 3}
+  healthBar: {fileID: 0}
+  shieldBar: {fileID: 0}
+  shieldPrefab: {fileID: 3920501911753083655, guid: 0eb06f4499a34d94eb144ad3525b68be, type: 3}
+--- !u!114 &7919444535535220543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2329600440152809287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 38734f44ae8db264ea405b0ba5a2cf10, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

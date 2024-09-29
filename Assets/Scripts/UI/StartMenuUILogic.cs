@@ -60,8 +60,8 @@ public class StartMenuUILogic : MonoBehaviour
         currentVehicleInstance = Instantiate(vehiclePrefab[index].gameObject);
         Vehicle vehicle = currentVehicleInstance.GetComponent<Vehicle>();
         PersistentDataManager.VehicleId = vehicle.VehicleId;
-        PersistentDataManager.Health = vehicle.MaxHealth;
-        PersistentDataManager.Shield = vehicle.Shield;
+        PersistentDataManager.MaxHealth = vehicle.MaxHealth;
+        PersistentDataManager.MaxShield = vehicle.Shield;
         PersistentDataManager.Power = vehicle.Power;
         PersistentDataManager.Steering = vehicle.Steering;
         PlayerPrefs.Save();

@@ -1,3 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="PauseMenu" focusable="false" style="align-self: flex-start; background-image: url(&quot;project://database/Assets/UI/images/SettingIcon.png?fileID=2800000&amp;guid=01e2ea07cb05d3440bab1efd7bae3025&amp;type=3#SettingIcon&quot;); background-color: rgba(255, 255, 255, 0); height: 43px; width: 42px;" />
-</ui:UXML>

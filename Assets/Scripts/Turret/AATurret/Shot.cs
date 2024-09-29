@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Shot : MonoBehaviour
+public class Shot : MonoBehaviour, Projectiles
 {
     [SerializeField] private GameObject hitPrefab;
     [SerializeField] private GameObject muzzlePrefab;
