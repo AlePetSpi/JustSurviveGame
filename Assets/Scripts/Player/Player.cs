@@ -38,8 +38,8 @@ public class Player : MonoBehaviour
 
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
-        //_vehicleInstance = Instantiate(vehicles[PersistentDataManager.VehicleId].gameObject, gameObject.transform);
-        _vehicleInstance = Instantiate(vehicles[0].gameObject, gameObject.transform);
+        _vehicleInstance = Instantiate(vehicles[PersistentDataManager.VehicleId].gameObject, gameObject.transform);
+        //_vehicleInstance = Instantiate(vehicles[0].gameObject, gameObject.transform);
         _rb = _vehicleInstance.GetComponent<Rigidbody>();
         _rb.useGravity = true;
 

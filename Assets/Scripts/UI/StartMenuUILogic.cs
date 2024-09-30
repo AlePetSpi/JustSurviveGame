@@ -47,6 +47,7 @@ public class StartMenuUILogic : MonoBehaviour
         {
             if (currentVehicleInstance != null)
             {
+                Destroy(FindAnyObjectByType<Camera>().gameObject);
                 Destroy(currentVehicleInstance);
             }
             InstantiateVehicle(vehicleNr);
@@ -58,6 +59,7 @@ public class StartMenuUILogic : MonoBehaviour
     {
         Debug.Log($"Vehicle NUmber {index}");
         currentVehicleInstance = Instantiate(vehiclePrefab[index].gameObject);
+        currentVehicleInstance.GetComponent<Rigidbody>().useGravity = false;
         Vehicle vehicle = currentVehicleInstance.GetComponent<Vehicle>();
         PersistentDataManager.VehicleId = vehicle.VehicleId;
         PersistentDataManager.MaxHealth = vehicle.MaxHealth;

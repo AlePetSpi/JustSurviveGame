@@ -763,10 +763,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2329600440152809287, guid: 5616992c11e15a441a1003872c1ec2d8, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 7257301576471214691, guid: 5616992c11e15a441a1003872c1ec2d8, type: 3}
       propertyPath: healthBar
       value: 
@@ -779,18 +775,6 @@ PrefabInstance:
       propertyPath: sceneUIManager
       value: 
       objectReference: {fileID: 819567981}
-    - target: {fileID: 7806754673177268368, guid: 5616992c11e15a441a1003872c1ec2d8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7806754673177268368, guid: 5616992c11e15a441a1003872c1ec2d8, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7806754673177268368, guid: 5616992c11e15a441a1003872c1ec2d8, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7806754673177268368, guid: 5616992c11e15a441a1003872c1ec2d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.9

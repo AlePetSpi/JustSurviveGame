@@ -50,9 +50,8 @@ MonoBehaviour:
   sceneUIManager: {fileID: 0}
   vehicles:
   - {fileID: 3015144585158358524, guid: 3fba269b01dcfdf4a846db8afa303904, type: 3}
-  - {fileID: 5866377690470209762, guid: fde91fe0aea4aff4096ea6f2a4b29727, type: 3}
-  - {fileID: -6094683931336005937, guid: 2326b4dfdbad5314681cc643c1fdf5a9, type: 3}
-  - {fileID: 274647674502212368, guid: 75394a4a4091a66419f011ddf6207c6e, type: 3}
+  - {fileID: -8899977727215930980, guid: dfb06a98f86fdd746a963e29480c40e4, type: 3}
+  - {fileID: 464324500849827930, guid: ea5360444b5870047bc337fd34ce598e, type: 3}
   healthBar: {fileID: 0}
   shieldBar: {fileID: 0}
   shieldPrefab: {fileID: 3920501911753083655, guid: 0eb06f4499a34d94eb144ad3525b68be, type: 3}
