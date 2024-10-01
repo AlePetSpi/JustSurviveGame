@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _size = 10;
-    [SerializeField] private float _speed = 10;
     [SerializeField] private SceneUIManager sceneUIManager;
     [SerializeField] private Vehicle[] vehicles;
     [SerializeField] private HealthBar healthBar;
@@ -39,12 +37,8 @@ public class Player : MonoBehaviour
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
         _vehicleInstance = Instantiate(vehicles[PersistentDataManager.VehicleId].gameObject, gameObject.transform);
-        //_vehicleInstance = Instantiate(vehicles[0].gameObject, gameObject.transform);
         _rb = _vehicleInstance.GetComponent<Rigidbody>();
         _rb.useGravity = true;
-
-        /*PersistentDataManager.MaxHealth = vehicles[PersistentDataManager.VehicleId].MaxHealth;
-        PersistentDataManager.MaxShield = vehicles[PersistentDataManager.VehicleId].Shield;*/
 
         _currentHealth = PersistentDataManager.MaxHealth;
         healthBar.SetMaxHealth(PersistentDataManager.MaxHealth);

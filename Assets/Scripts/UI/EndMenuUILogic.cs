@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -11,6 +12,13 @@ public class EndMenuUILogic : MonoBehaviour
     private const string StartMenuButtonName = "StartMenuButton";
 
     private UIDocument _endMenuUIDocument;
+
+    public event EventHandler LeaveEndScreenMenu;
+
+    protected virtual void OnLeaveEndScreenButtonPressed()
+    {
+        LeaveEndScreenMenu?.Invoke(this, EventArgs.Empty);
+    }
 
     void OnEnable()
     {
@@ -26,16 +34,19 @@ public class EndMenuUILogic : MonoBehaviour
         _endMenuUIDocument.rootVisualElement.Q<Button>(RestartButton).clicked += () =>
         {
             Debug.Log("RestartButton Button Pressed");
+            OnLeaveEndScreenButtonPressed();
             SceneManager.LoadScene(currentSceneIndex, LoadSceneMode.Single);
         };
         _endMenuUIDocument.rootVisualElement.Q<Button>(NextButtonName).clicked += () =>
         {
             Debug.Log($"Next Button Pressed next Scene index: {currentSceneIndex + 1}");
+            OnLeaveEndScreenButtonPressed();
             //UnityEngine.SceneManagement.SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         };
         _endMenuUIDocument.rootVisualElement.Q<Button>(StartMenuButtonName).clicked += () =>
         {
-            Debug.Log("Start Button Pressed");
+            Debug.Log("Start Menu Button Pressed");
+            OnLeaveEndScreenButtonPressed();
             SceneManager.LoadScene(0, LoadSceneMode.Single);
         };
 

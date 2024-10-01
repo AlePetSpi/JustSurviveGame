@@ -17,9 +17,7 @@ public class Vehicle : MonoBehaviour
 
     private Vector3 _initialPosition;
     private Quaternion _initialRotation;
-
     public AxleInfo[] AxleInfos => axleInfos;
-
     public int VehicleId { get => _vehicleId; set => _vehicleId = value; }
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public int Shield { get => _shield; set => _shield = value; }
@@ -27,26 +25,13 @@ public class Vehicle : MonoBehaviour
     public int Power { get => _power; set => _power = value; }
     public Rigidbody Rb { get => _rb; set => _rb = value; }
 
-
-
     public void Start()
     {
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
-        //FindObjectOfType<GoalManager>().FinishedLap += OnFinishedLap;
         _cartRenderers = GetComponentsInChildren<Renderer>();
         _rb = GetComponent<Rigidbody>();
-
-        /*PersistentDataManager.DataChangedEvent += (_, _) => UpdateCartProperties();
-        UpdateCartProperties();*/
-
     }
-
-    /* private void UpdateCartProperties()
-     {
-         maxSteering = (int)PersistentDataManager.Steering;
-         motorPower = (int)PersistentDataManager.Power;
-     }*/
 
     private void OnReset()
     {
@@ -54,14 +39,6 @@ public class Vehicle : MonoBehaviour
         transform.position = _initialPosition;
         transform.rotation = _initialRotation;
     }
-
-    /* private void OnFinishedLap(object sender, GoalManager.FinishedLapEventArgs e)
-     {
-         foreach (Renderer rend in _cartRenderers)
-         {
-             rend.material.color = new Color(UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2));
-         }
-     }*/
 
     private void OnMove(InputValue inputValue)
     {
@@ -132,7 +109,6 @@ public class Vehicle : MonoBehaviour
         {
             return 0;
         }
-
     }
 
 }

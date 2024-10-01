@@ -7,6 +7,7 @@ public class SceneUIManager : MonoBehaviour
     [SerializeField] private PauseMenuUILogic pauseMenuPanelPrefab;
     [SerializeField] private EndMenuUILogic endMenuPanelPrefab;
     [SerializeField] private Player player;
+    [SerializeField] private FinishPoint finishPoint;
     private PauseMenuUILogic _pauseMenuPanel;
     private EndMenuUILogic _endMenuPanel;
     private float _timeScale;
@@ -23,6 +24,7 @@ public class SceneUIManager : MonoBehaviour
     {
         _pauseMenuPanel.gameObject.SetActive(false);
         _pauseMenuPanel.LeavePauseMenu += OnLeavePauseMenu;
+        _endMenuPanel.LeaveEndScreenMenu += OnLeaveEndScreenPressed;
         if (player != null)
         {
             player.PauseMenuButtonPressed += OnPauseMenuButtonPressed;
@@ -31,6 +33,21 @@ public class SceneUIManager : MonoBehaviour
         {
             Debug.LogError("Player reference is missing in SceneUIManager.");
         }
+
+        if (finishPoint != null)
+        {
+            finishPoint.FinishPassed += OnFinishedPassed;
+        }
+        else
+        {
+            Debug.LogError("FinishPoint reference is missing in SceneUIManager.");
+        }
+    }
+
+    private void OnFinishedPassed(object sender, EventArgs e)
+    {
+        Debug.Log("Finished activated Event");
+        EndScreen(EndScreenStatus.WIN_STATUS);
     }
 
     private void OnPauseMenuButtonPressed(object sender, EventArgs e)
@@ -48,10 +65,26 @@ public class SceneUIManager : MonoBehaviour
         _pauseMenuPanel.gameObject.SetActive(false);
     }
 
+    private void OnLeaveEndScreenPressed(object sender, EventArgs e)
+    {
+        Debug.Log("EndScreen canceled");
+        Time.timeScale = _timeScale;
+        _endMenuPanel.gameObject.SetActive(false);
+    }
+
     public void EndScreen(EndScreenStatus endScreenStatus)
     {
+        _timeScale = Time.timeScale;
+        Time.timeScale = 0;
         _pauseMenuPanel.gameObject.SetActive(false);
         _endMenuPanel.gameObject.SetActive(true);
-        PersistentDataManager.EndTitleText = "GameOver :(";
+        if (EndScreenStatus.WIN_STATUS.ToString().Equals(endScreenStatus.ToString()))
+        {
+            PersistentDataManager.EndTitleText = "You Win";
+        }
+        else
+        {
+            PersistentDataManager.EndTitleText = "GameOver :(";
+        }
     }
 }
