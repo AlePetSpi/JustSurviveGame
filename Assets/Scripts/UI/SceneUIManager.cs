@@ -46,13 +46,11 @@ public class SceneUIManager : MonoBehaviour
 
     private void OnFinishedPassed(object sender, EventArgs e)
     {
-        Debug.Log("Finished activated Event");
         EndScreen(EndScreenStatus.WIN_STATUS);
     }
 
     private void OnPauseMenuButtonPressed(object sender, EventArgs e)
     {
-        Debug.Log("Pause activated Event");
         _timeScale = Time.timeScale;
         Time.timeScale = 0;
         _pauseMenuPanel.gameObject.SetActive(true);
@@ -60,14 +58,12 @@ public class SceneUIManager : MonoBehaviour
 
     private void OnLeavePauseMenu(object sender, EventArgs e)
     {
-        Debug.Log("Pause canceled");
         Time.timeScale = _timeScale;
         _pauseMenuPanel.gameObject.SetActive(false);
     }
 
     private void OnLeaveEndScreenPressed(object sender, EventArgs e)
     {
-        Debug.Log("EndScreen canceled");
         Time.timeScale = _timeScale;
         _endMenuPanel.gameObject.SetActive(false);
     }
@@ -76,8 +72,7 @@ public class SceneUIManager : MonoBehaviour
     {
         _timeScale = Time.timeScale;
         Time.timeScale = 0;
-        _pauseMenuPanel.gameObject.SetActive(false);
-        _endMenuPanel.gameObject.SetActive(true);
+        Debug.Log($"EndscreenStatus: {endScreenStatus.ToString()}");
         if (EndScreenStatus.WIN_STATUS.ToString().Equals(endScreenStatus.ToString()))
         {
             PersistentDataManager.EndTitleText = "You Win";
@@ -86,5 +81,7 @@ public class SceneUIManager : MonoBehaviour
         {
             PersistentDataManager.EndTitleText = "GameOver :(";
         }
+        _pauseMenuPanel.gameObject.SetActive(false);
+        _endMenuPanel.gameObject.SetActive(true);
     }
 }

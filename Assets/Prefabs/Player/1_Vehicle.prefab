@@ -396,6 +396,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1666233454436870, guid: 764bc68a1a0dd384184fdeedf75892f9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5509160760419165218}
+    - targetCorrespondingSourceObject: {fileID: 1666233454436870, guid: 764bc68a1a0dd384184fdeedf75892f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 919348207658595579}
     - targetCorrespondingSourceObject: {fileID: 1748005995608910, guid: 764bc68a1a0dd384184fdeedf75892f9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 527190528852049835}
@@ -552,6 +555,21 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &919348207658595579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558298797120669053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ca1fb9764323e4c91cef8f55154fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enginePurring: {fileID: 8300000, guid: c9ee925684a28bb469323024e68771e1, type: 3}
+  engineLow: {fileID: 8300000, guid: 30a8fbfbde52df342bca21cc800e6274, type: 3}
+  tiresSquealing: {fileID: 8300000, guid: 4545303809a00f645bd44f5f4fc27513, type: 3}
 --- !u!1 &8558793995730492469 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1748005995608910, guid: 764bc68a1a0dd384184fdeedf75892f9, type: 3}

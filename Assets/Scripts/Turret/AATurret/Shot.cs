@@ -14,7 +14,7 @@ public class Shot : MonoBehaviour, Projectiles
     void Start()
     {
         var muzzleEffect = Instantiate(muzzlePrefab, transform.position, transform.rotation);
-        Destroy(muzzleEffect);
+        Destroy(muzzleEffect, 1f);
         velocity = transform.forward * speed;
         transform.Rotate(90.0f, 0.0f, 0.0f);
     }

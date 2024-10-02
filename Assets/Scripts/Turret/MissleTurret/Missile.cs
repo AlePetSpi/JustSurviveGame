@@ -7,7 +7,7 @@ public class Missile : MonoBehaviour, Projectiles
     [Header("REFERENCES")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private GameObject explosionPrefab;
-    [SerializeField] private GameObject startMissilePrefab;
+    [SerializeField] private GameObject launchPrefab;
     [SerializeField] private int secondsToDestroy = 9;
 
     [Header("MOVEMENT")]
@@ -23,18 +23,17 @@ public class Missile : MonoBehaviour, Projectiles
     [Header("DEVIATION")]
     [SerializeField] private float deviationAmount = 50;
     [SerializeField] private float deviationSpeed = 2;
-    [SerializeField] private int damage = 50;
 
     private Vehicle _vehicle;
 
     public Vehicle Vehicle { get => _vehicle; set => _vehicle = value; }
 
-    private void Awake()
+    private void Start()
     {
-        if (startMissilePrefab)
+        if (launchPrefab != null)
         {
-            GameObject effect = Instantiate(startMissilePrefab, transform.position, Quaternion.identity);
-            Destroy(effect, 1f);
+            GameObject launchObject = Instantiate(launchPrefab, transform.position, Quaternion.identity);
+            Destroy(launchObject, 5f);
         }
     }
 
@@ -93,17 +92,8 @@ public class Missile : MonoBehaviour, Projectiles
         {
             explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         }
-        if (collision.transform.TryGetComponent<Vehicle>(out var vehicle))
-        {
-            Player player = vehicle.GetComponentInParent<Player>();
-
-            if (player != null)
-            {
-                player.Hit(damage);
-            }
-        }
         Destroy(gameObject);
-        Destroy(explosion);
+        Destroy(explosion, 3f);
     }
 
     private void OnDrawGizmos()

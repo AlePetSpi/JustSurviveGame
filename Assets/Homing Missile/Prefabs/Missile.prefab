@@ -307,8 +307,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 184470500350564771}
-  target: {fileID: 0}
   explosionPrefab: {fileID: 0}
+  trailMissilePrefab: {fileID: 0}
+  secondsToDestroy: 9
   speed: 15
   rotateSpeed: 95
   maxDistancePredict: 100

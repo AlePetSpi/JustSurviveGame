@@ -90,7 +90,6 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Shield fully drained.");
             Destroy(_activeShield.gameObject);
-            Debug.Log("Shield destroyed");
         }
 
         yield return StartCoroutine(ShieldCooldown());

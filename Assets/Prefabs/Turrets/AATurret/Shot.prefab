@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02399af79626dc4282820159f181858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPrefab: {fileID: 4396058714394866264, guid: 3166a33f09bf1134385422eff58631cb, type: 3}
+  hitPrefab: {fileID: 7067613494352982750, guid: e58d07d97ae52634c8d55cf15a20a5ba, type: 3}
   muzzlePrefab: {fileID: 4396058714394866264, guid: 3166a33f09bf1134385422eff58631cb, type: 3}
   rb: {fileID: 5786733085122574382}
   speed: 100

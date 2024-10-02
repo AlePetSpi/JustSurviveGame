@@ -57,7 +57,7 @@ public class StartMenuUILogic : MonoBehaviour
 
     private void InstantiateVehicle(int index)
     {
-        Debug.Log($"Vehicle NUmber {index}");
+        Debug.Log($"Vehicle Number {index}");
         currentVehicleInstance = Instantiate(vehiclePrefab[index].gameObject);
         currentVehicleInstance.GetComponent<Rigidbody>().useGravity = false;
         Vehicle vehicle = currentVehicleInstance.GetComponent<Vehicle>();

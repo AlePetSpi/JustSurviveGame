@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 public class MisselTurret : MonoBehaviour
@@ -8,40 +7,11 @@ public class MisselTurret : MonoBehaviour
     [SerializeField] private Transform[] missilePoints;
     [SerializeField] private GameObject missilePrefab;
     [SerializeField] private int seconds;
-    [SerializeField] private bool drawGizmos = false;
 
     private bool _isActivated = false;
     private Vehicle _vehicle;
     private int _startMissileNr = 0;
     private Coroutine _missileRoutine;
-
-    private void OnDrawGizmos()
-    {
-#if UNITY_EDITOR
-        if (!drawGizmos || !_vehicle) return;
-
-        var dashLineSize = 2f;
-
-        foreach (var mountPoint in mountPoints)
-        {
-            var hardpoint = mountPoint.transform;
-            var from = Quaternion.AngleAxis(-mountPoint.angleLimit / 2, hardpoint.up) * hardpoint.forward;
-            var projection = Vector3.ProjectOnPlane(_vehicle.transform.position - hardpoint.position, hardpoint.up);
-
-            Handles.color = Color.white;
-            Handles.DrawDottedLine(_vehicle.transform.position, hardpoint.position + projection, dashLineSize);
-
-            if (Vector3.Angle(hardpoint.forward, projection) > mountPoint.angleLimit / 2) return;
-
-            Handles.color = Color.red;
-            Handles.DrawLine(hardpoint.position, hardpoint.position + projection);
-
-            Handles.color = Color.green;
-            Handles.DrawWireArc(hardpoint.position, hardpoint.up, from, mountPoint.angleLimit, projection.magnitude);
-            Handles.DrawSolidDisc(hardpoint.position + projection, hardpoint.up, .5f);
-#endif
-        }
-    }
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -86,7 +56,6 @@ public class MisselTurret : MonoBehaviour
             }
         }
 
-        //Debug.Log($"aimed {aimed} / _isActivated {_isActivated} / _startMissileNr {_startMissileNr} < missilePoints.Length {missilePoints.Length} / _missileRoutine {_missileRoutine}");
         if (aimed && _isActivated && _startMissileNr < missilePoints.Length && _missileRoutine == null)
         {
             Debug.Log($"Health {PersistentDataManager.MaxHealth}");
