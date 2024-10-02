@@ -51,6 +51,11 @@ public class Missile : MonoBehaviour, Projectiles
         RotateRocket();
 
         StartCoroutine(DestroyMissle());
+
+        if (Time.timeScale == 0)
+        {
+            gameObject.GetComponent<AudioSource>().Pause();
+        }
     }
 
     private IEnumerator DestroyMissle()
