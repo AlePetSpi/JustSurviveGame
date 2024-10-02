@@ -12,6 +12,24 @@ public class MisselTurret : MonoBehaviour
     private Vehicle _vehicle;
     private int _startMissileNr = 0;
     private Coroutine _missileRoutine;
+    private AudioSource _source;
+
+    void Start()
+    {
+        _source = GetComponent<AudioSource>();
+    }
+
+    void Update()
+    {
+        if (_source)
+        {
+            if (Time.timeScale == 0)
+            {
+                _source.Pause();
+            }
+        }
+
+    }
 
     private void OnTriggerEnter(Collider collider)
     {

@@ -2,6 +2,7 @@ using Assets.Scripts;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -48,9 +49,12 @@ public class Player : MonoBehaviour
         ShieldBar.SetShield(_currentShield);
     }
 
-    private void OnPause()
+    private void OnPause(InputValue inputValue)
     {
-        PauseMenuButtonPressed?.Invoke(this, EventArgs.Empty);
+        if (Time.timeScale != 0)
+        {
+            PauseMenuButtonPressed?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     private void OnShield()
@@ -138,5 +142,13 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
             sceneUIManager.EndScreen(EndScreenStatus.DEAD_STATUS);
         }
+    }
+
+    internal void InstantKill()
+    {
+        healthBar.SetHealth(0);
+        Debug.Log("Player dead");
+        Destroy(gameObject);
+        sceneUIManager.EndScreen(EndScreenStatus.DEAD_STATUS);
     }
 }

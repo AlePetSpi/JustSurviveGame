@@ -25,6 +25,7 @@ public class Missile : MonoBehaviour, Projectiles
     [SerializeField] private float deviationSpeed = 2;
 
     private Vehicle _vehicle;
+    private AudioSource _source;
 
     public Vehicle Vehicle { get => _vehicle; set => _vehicle = value; }
 
@@ -34,6 +35,17 @@ public class Missile : MonoBehaviour, Projectiles
         {
             GameObject launchObject = Instantiate(launchPrefab, transform.position, Quaternion.identity);
             Destroy(launchObject, 5f);
+        }
+        _source = GetComponent<AudioSource>();
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Time.timeScale == 0)
+        {
+            _source.Pause();
         }
     }
 
@@ -51,11 +63,6 @@ public class Missile : MonoBehaviour, Projectiles
         RotateRocket();
 
         StartCoroutine(DestroyMissle());
-
-        if (Time.timeScale == 0)
-        {
-            gameObject.GetComponent<AudioSource>().Pause();
-        }
     }
 
     private IEnumerator DestroyMissle()
