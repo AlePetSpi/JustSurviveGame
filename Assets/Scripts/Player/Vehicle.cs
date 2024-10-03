@@ -17,6 +17,7 @@ public class Vehicle : MonoBehaviour
 
     private Vector3 _initialPosition;
     private Quaternion _initialRotation;
+    private Player _player;
     public AxleInfo[] AxleInfos => axleInfos;
     public int VehicleId { get => _vehicleId; set => _vehicleId = value; }
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
@@ -31,6 +32,7 @@ public class Vehicle : MonoBehaviour
         _initialRotation = transform.rotation;
         _cartRenderers = GetComponentsInChildren<Renderer>();
         _rb = GetComponent<Rigidbody>();
+        _player = GetComponentInParent<Player>();
     }
 
     private void OnReset()
@@ -44,6 +46,16 @@ public class Vehicle : MonoBehaviour
     {
         Debug.Log($"Key is clicked: {inputValue.GetType()}");
         _direction = inputValue.Get<Vector2>();
+    }
+
+    private void OnPause()
+    {
+        _player.OnPause();
+    }
+
+    private void OnShield()
+    {
+        _player.OnShield();
     }
 
     private void FixedUpdate()

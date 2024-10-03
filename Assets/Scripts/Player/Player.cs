@@ -2,7 +2,6 @@ using Assets.Scripts;
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -49,7 +48,7 @@ public class Player : MonoBehaviour
         ShieldBar.SetShield(_currentShield);
     }
 
-    private void OnPause(InputValue inputValue)
+    public void OnPause()
     {
         if (Time.timeScale != 0)
         {
@@ -57,7 +56,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnShield()
+    public void OnShield()
     {
         if (_shieldActive || _shieldOnCooldown)
         {
