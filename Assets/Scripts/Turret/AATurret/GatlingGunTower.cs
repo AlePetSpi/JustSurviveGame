@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GatlingGun : MonoBehaviour
+public class GatlingGunTower : MonoBehaviour
 {
     [SerializeField] private Shot shotPrefab;
 

@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27393ecb4651b54ca9e06f38c44ad18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _size: 10
-  _speed: 1
   sceneUIManager: {fileID: 0}
   vehicles:
   - {fileID: 3015144585158358524, guid: 3fba269b01dcfdf4a846db8afa303904, type: 3}
@@ -80,8 +78,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard&Mouse
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

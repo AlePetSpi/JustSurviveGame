@@ -42,6 +42,7 @@ public class Vehicle : MonoBehaviour
 
     private void OnMove(InputValue inputValue)
     {
+        Debug.Log($"Key is clicked: {inputValue.GetType()}");
         _direction = inputValue.Get<Vector2>();
     }
 
